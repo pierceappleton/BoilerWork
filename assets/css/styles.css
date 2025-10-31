@@ -1,0 +1,104 @@
+/* BoilerWork minimalist theme (gold only for lines + accent underlines) */
+:root{
+  --bg:#000;
+  --text:#e6e6e6;
+  --muted:#a1a1aa;
+  --border:#2b2b2b;
+  --purdue:#D4AF37;  /* gold accent */
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+
+.container{max-width:1120px;margin-inline:auto;padding:0 20px}
+.section{padding:56px 0}
+.grid-2{display:grid;grid-template-columns:1fr;gap:24px}
+@media (min-width:900px){.grid-2{grid-template-columns:1.1fr .9fr}}
+.cards-3,.cards-2{display:grid;gap:16px}
+.cards-3{grid-template-columns:1fr}
+.cards-2{grid-template-columns:1fr}
+@media (min-width:760px){.cards-3{grid-template-columns:repeat(3,1fr)}.cards-2{grid-template-columns:repeat(2,1fr)}}
+.maxw{max-width:840px;color:#d1d5db}
+
+/* Header / Nav */
+.site-header{position:sticky;top:0;z-index:40;background:#0a0a0a;border-bottom:1px solid var(--purdue)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:700;color:#e5e5e5;text-decoration:none}
+.logo-mark{width:18px;height:18px;border-radius:3px;background:var(--purdue)}
+.brand{letter-spacing:.06em}
+.nav{display:flex;gap:1rem;align-items:center}
+.nav a{color:#d4d4d8;text-decoration:none}
+.nav a[aria-current="page"]{color:#fff}
+.nav-join{padding-bottom:2px;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--purdue)}
+.menu-btn{display:none;flex-direction:column;gap:4px;border:1px solid var(--border);border-radius:8px;background:transparent;color:#e5e5e5;width:40px;height:40px;align-items:center;justify-content:center}
+.menu-btn span{display:block;background:#e5e5e5;height:1px;width:18px}
+.mobile-nav{display:none;flex-direction:column;gap:12px;padding:12px 20px;border-bottom:1px solid var(--purdue);background:#0a0a0a}
+@media (max-width:860px){ .nav{display:none} .menu-btn{display:flex} }
+
+/* Hero / text */
+.hero{padding:64px 0}
+.eyebrow{letter-spacing:.25em;text-transform:uppercase;font-size:.75rem;color:#9ca3af;margin-bottom:10px}
+.purdue{color:var(--purdue)}
+.display{font-weight:800;line-height:1;font-size:clamp(40px,7vw,72px)}
+.lead{font-size:1.125rem;color:#d1d5db}
+.cta-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+
+/* Buttons (neutral only) */
+.btn{display:inline-block;padding:12px 18px;border-radius:10px;border:1px solid #444;text-decoration:none}
+/* Gold outline apply now button on index */
+.btn-primary {
+  background: transparent;
+  color: var(--purdue);
+  border: 1px solid var(--purdue);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  background: var(--purdue);
+  color: #000;
+}
+
+.btn-primary:hover{background:#D4AF37}
+.btn-outline{color:#e5e5e5;border-color:#5a5a5a}
+.btn-outline:hover{border-color:#777}
+
+/* Cards / rules */
+.card{background:#0f0f0f;border:1px solid var(--purdue);border-radius:12px;padding:20px}
+.rule{border:0;border-top:1px solid var(--purdue);margin:24px 0;opacity:.7}
+
+/* Clickable cards */
+.link-card{display:block;color:inherit}
+.link-card:hover{border-color:#a78b2a}
+
+/* Projects */
+.project{display:grid;gap:18px;grid-template-columns:1fr}
+@media (min-width:900px){.project{grid-template-columns:340px 1fr}}
+.project-img{width:100%;height:auto;border-radius:12px;border:1px solid var(--purdue);background:#111}
+.project-body{padding:6px 0}
+.project-title{margin:.25rem 0 0 0}
+
+/* Team */
+.person .avatar{width:40px;height:40px;border-radius:8px;background:#1a1a1a;border:1px solid var(--purdue);margin-bottom:10px}
+.person-name{font-weight:700}
+.person-role{color:#c9c9c9}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--purdue);padding:28px 0;margin-top:40px}
+.footer-inner{display:flex;gap:12px;align-items:center;justify-content:center;color:#9ca3af}
+
+/* Clickable cards — underline only headings, not body text */
+.link-card { 
+  text-decoration: none; 
+  color: inherit;
+}
+
+.link-card h3 { 
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--text);
+}
+
+.link-card p { 
+  text-decoration: none;
+}
+
