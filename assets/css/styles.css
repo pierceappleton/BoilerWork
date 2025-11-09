@@ -102,3 +102,174 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial
   text-decoration: none;
 }
 
+/* Full-screen looping background video */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.6; /* adjust for text contrast */
+}
+
+/* Optional: dark overlay for readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+/* ===== BoilerWork Gold Hover Glow ===== */
+
+/* Base gold colors */
+:root {
+  --gold-base: #d4af37;
+  --gold-glow: #f5d67b;
+}
+
+/* Buttons - subtle base, glow on hover */
+.btn-primary {
+  background-color: var(--gold-base);
+  color: #000;
+  border: 1px solid var(--gold-base);
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  box-shadow: none;
+}
+
+.btn-primary:hover {
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px var(--gold-base),
+    0 0 25px rgba(212, 175, 55, 0.6);
+}
+
+/* Outline buttons (if you use .btn-outline) */
+.btn-outline:hover {
+  color: var(--gold-base);
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px rgba(212, 175, 55, 0.7);
+}
+
+/* Input and textarea fields - glow on focus */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+/* Optional: subtle glow pulse on focus for realism */
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 4px var(--gold-glow), 0 0 10px rgba(212, 175, 55, 0.5); }
+  50% { box-shadow: 0 0 8px var(--gold-glow), 0 0 20px rgba(212, 175, 55, 0.7); }
+  100% { box-shadow: 0 0 4px var(--gold-glow), 0 0 10px rgba(212, 175, 55, 0.5); }
+}
+
+input:focus,
+textarea:focus {
+  animation: glowPulse 2.5s infinite alternate;
+}
+/* === Refinements: Transparent Hover + Glow Extensions === */
+
+/* 1. Transparent hover for gold buttons (no yellow fill) */
+.btn-primary {
+  background-color: transparent !important;
+  color: var(--gold-base);
+  border: 1px solid var(--gold-base);
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: transparent !important;
+  color: var(--gold-glow);
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px var(--gold-base),
+    0 0 25px rgba(212, 175, 55, 0.6);
+}
+
+/* 2. Extend same glow behavior to text boxes on About page */
+.section input,
+.section textarea {
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: transparent;
+  color: #fff;
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+.section input:focus,
+.section textarea:focus {
+  border-color: var(--gold-glow);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px rgba(212, 175, 55, 0.6);
+  animation: glowPulse 2.5s infinite alternate;
+}
+
+/* 3. Gold perimeter glow for project images on hover */
+.project-img {
+  transition: box-shadow 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+.project-img:hover {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 6px var(--gold-glow),
+    0 0 15px var(--gold-base),
+    0 0 25px rgba(212, 175, 55, 0.5);
+}
+
+/* ===== LinkedIn Links for Leadership ===== */
+
+.linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  color: var(--gold-base);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 6px 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.linkedin-link:hover {
+  border-color: var(--gold-glow);
+  box-shadow: 0 0 6px var(--gold-glow), 0 0 15px var(--gold-base);
+  color: var(--gold-glow);
+}
+
+.linkedin-icon {
+  width: 18px;
+  height: 18px;
+  transition: filter 0.3s ease-in-out;
+}
+
+.linkedin-link:hover .linkedin-icon {
+  filter: drop-shadow(0 0 6px var(--gold-glow));
+}
