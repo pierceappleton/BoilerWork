@@ -317,3 +317,22 @@ body.nav-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .mobile-nav { transition: none; }
 }
+/* iPhone-safe mobile nav layering */
+.menu-btn { cursor: pointer; z-index: 110; -webkit-tap-highlight-color: transparent; }
+.site-header { z-index: 120; }
+.mobile-nav {
+  position: fixed;
+  top: 64px; left: 0; right: 0;
+  display: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--purdue);
+  background: #0a0a0a;
+  z-index: 115;
+}
+.mobile-nav.open { display: flex; }
+body.nav-open { overflow: hidden; }
+
+/* prevent background video from stealing taps on iOS */
+#bg-video { pointer-events: none; }
