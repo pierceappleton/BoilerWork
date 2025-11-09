@@ -1,48 +1,47 @@
-// Minimal JS: year + improved mobile menu toggle (works on iPhone)
+// Minimal JS: year + robust mobile menu toggle (iPhone-safe)
 (function () {
-  // Set footer year
+  // footer year
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Mobile nav toggle
-  var menuBtn = document.querySelector('.menu-btn');
+  var btn = document.querySelector('.menu-btn');
   var mobile = document.querySelector('.mobile-nav');
+  if (!btn || !mobile) return;
 
-  if (menuBtn && mobile) {
-    var isOpen = false;
+  var open = function () {
+    mobile.classList.add('open');
+    document.body.classList.add('nav-open');
+    btn.setAttribute('aria-expanded', 'true');
+  };
+  var close = function () {
+    mobile.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
+  var toggle = function (e) {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
+    mobile.classList.contains('open') ? close() : open();
+  };
 
-    var toggleMenu = function () {
-      isOpen = !isOpen;
-      mobile.classList.toggle('open', isOpen);
-      menuBtn.setAttribute('aria-expanded', isOpen);
-      document.body.classList.toggle('nav-open', isOpen);
-    };
+  // Click + touch (iOS) + pointer events
+  ['click', 'touchstart', 'pointerdown'].forEach(function (evt) {
+    btn.addEventListener(evt, toggle, { passive: false });
+  });
 
-    // Click/tap support for all devices
-    menuBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleMenu();
-    });
+  // Close when a menu link is tapped
+  mobile.addEventListener('click', function (e) {
+    if (e.target.closest('a')) close();
+  });
 
-    // Close the menu when any link is tapped
-    mobile.addEventListener('click', function (e) {
-      if (e.target.tagName.toLowerCase() === 'a') {
-        isOpen = false;
-        mobile.classList.remove('open');
-        document.body.classList.remove('nav-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
+  // Close when tapping outside the menu
+  document.addEventListener('click', function (e) {
+    if (!mobile.classList.contains('open')) return;
+    if (e.target.closest('.menu-btn') || e.target.closest('.mobile-nav')) return;
+    close();
+  });
 
-    // Close on ESC key
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && isOpen) {
-        isOpen = false;
-        mobile.classList.remove('open');
-        document.body.classList.remove('nav-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-      }
-    });
-  }
+  // Close on ESC
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') close();
+  });
 })();
