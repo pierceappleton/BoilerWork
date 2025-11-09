@@ -273,3 +273,47 @@ textarea:focus {
 .linkedin-link:hover .linkedin-icon {
   filter: drop-shadow(0 0 6px var(--gold-glow));
 }
+
+/* --- Mobile menu behavior & layering (iPhone-safe) --- */
+:root { --header-h: 64px; } /* keep in sync with .header-inner height */
+
+.menu-btn { cursor: pointer; z-index: 110; -webkit-tap-highlight-color: transparent; }
+.site-header { z-index: 120; } /* header above everything */
+
+/* Base (hidden) state */
+.mobile-nav {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  display: none;                 /* hidden by default */
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--purdue);
+  background: #0a0a0a;
+  z-index: 115;
+
+  /* smooth slide/fade (no effect when hidden) */
+  transform: translateY(-8px);
+  opacity: 0;
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+/* Open state */
+.mobile-nav.open {
+  display: flex;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Prevent background scroll when menu open */
+body.nav-open { overflow: hidden; }
+
+/* Ensure video never intercepts taps on iOS */
+#bg-video { pointer-events: none; }
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav { transition: none; }
+}
